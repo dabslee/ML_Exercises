@@ -1,6 +1,7 @@
 import gymnasium as gym
 import torch
 import pickle
+import time
 
 # create the gym environment
 env = gym.make("CartPole-v1", render_mode="human")
@@ -32,4 +33,5 @@ while state is not None:
     state = None if terminated else torch.tensor(observation, dtype=torch.float32).unsqueeze(0)
     env.render()
     duration += 1
+    time.sleep(0.01)
 print(duration)

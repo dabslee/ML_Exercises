@@ -10,12 +10,13 @@ https://www.davidsilver.uk/wp-content/uploads/2020/03/Easy21-Johannes.pdf
 class Easy21Env(gym.Env):
     metadata = {"render_modes": ["human"], "render_fps": 2}
 
-    def __init__(self, render_mode=None):
+    def __init__(self, config=None):
         # observation space: [player_total, dealer_total]
         self.observation_space = gym.spaces.Box(low=-np.inf, high=np.inf, shape=(2,), dtype=np.int32)
         # action space: stick (0) or hit (1)
         self.action_space = gym.spaces.Discrete(2)
         # render settings
+        render_mode = config.get("render_mode")
         assert render_mode is None or render_mode in self.metadata["render_modes"]
         self.render_mode = render_mode
 
